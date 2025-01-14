@@ -1,0 +1,26 @@
+{
+    "builds": [
+      {
+        "src": "public/index.php",
+        "use": "@vercel/php"
+      }
+    ],
+    "env": {
+      "COMPOSER_ALLOW_SUPERUSER": "1"
+    },
+    "build": {
+      "commands": [
+        "curl -sS https://getcomposer.org/installer | php",
+        "php composer.phar install --optimize-autoloader --no-dev",
+        "npm install",
+        "npm run production"
+      ]
+    },
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "public/$1"
+      }
+    ]
+  }
+  
